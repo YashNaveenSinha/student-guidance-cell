@@ -24,7 +24,7 @@ const AppointmentForm = ({
                             {
                                 profileById !== null ? 
                                 (
-                                    <Form profile={profileById.doctor} history={history} doctorId={profileById.doctor._id} />
+                                    <Form profile={profileById.doctor} patients={profileById.patients} history={history} doctorId={profileById.doctor._id} />
                                 ) : (
                                     ""
                                 )

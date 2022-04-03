@@ -5,7 +5,7 @@ import { addAppointment } from '../../actions/appointment';
 import { Link } from 'react-router-dom';
 
 
-const Form = ({ profile, doctorId, history, addAppointment }) => {
+const Form = ({ profile, patients, doctorId, history, addAppointment }) => {
 
     const [formData, setFormData] = useState({
         patientname: '',
@@ -13,8 +13,24 @@ const Form = ({ profile, doctorId, history, addAppointment }) => {
         age: '',
         status: '',
         date: '',
+        slot:'',
         description: ''
     });
+
+    const [usedSlots, setUsedSlots] = useState([])
+
+    const slotsArray = {
+        '8_9' : '8:00-9:00',
+        '9_10' : '9:00-10:00',
+        '10_11' : '10:00-11:00',
+        '11_12' : '11:00-12:00',
+        '12_1' : '12:00-1:00',
+        '1_2' : '1:00-2:00',
+        '2_3' : '2:00-3:00',
+        '3_4' : '3:00-4:00',
+        '4_5' : '4:00-5:00',
+        '5_6' : '5:00-6:00',
+    }
 
     const {
         patientname,
@@ -22,13 +38,40 @@ const Form = ({ profile, doctorId, history, addAppointment }) => {
         age,
         status,
         date,
+        slot,
         description
     } = formData;
 
-    const onChange = e => setFormData({
-        ...formData,
-        [e.target.name]: e.target.value
-    });
+    const onChange = (e, attr) => {
+        setFormData({
+            ...formData,
+            [e.target.name]: e.target.value
+        })
+        // console.log('attr', e.target.value);
+        if(attr == 'dp' && patients && patients.length){
+            let uSlots = []
+            patients.map((item)=>{
+                console.log(item.date.split('T')[0], e.target.value, item.date.split('T')[0] == e.target.value);
+                if(item.date.split('T')[0] == e.target.value){
+                    uSlots.push(item.slot);
+                }
+            })
+            console.log({uSlots});
+            setUsedSlots(uSlots)
+        }
+    };
+    const updateSlot = (e, item) =>{
+        console.log('elem', e.currentTarget);
+        e.currentTarget.classList.add('selected')
+        setFormData({
+            ...formData,
+            slot: item
+        })
+    }
+
+    const slotItems = Object.keys(slotsArray).map(item => (
+          <span key={item} onClick={e => updateSlot(e, item)}> {!usedSlots.includes(item) ? slotsArray[item]  : ''}</span>
+    ))
     return (
         <Fragment>
             <br />
@@ -92,20 +135,13 @@ const Form = ({ profile, doctorId, history, addAppointment }) => {
                         className="form-control"
                         name="date"
                         value={date}
-                        onChange={e => onChange(e)} />
+                        onChange={e => onChange(e, 'dp')} />
                 </div>
                 <div className="form-group">
-                    <label htmlFor='slot' style={{ color: "cadetblue", marginRight: "20px" }}>Select a slot</label>
-                    <select id="slot" name="slot">
-                        <option value="slot-1">8:00-9:00</option>
-                        <option value="slot-2">9:00-10:00</option>
-                        <option value="slot-3">10:00-11:00</option>
-                        <option value="slot-4">11:00-12:00</option>
-                        <option value="slot-5">13:00-14:00</option>
-                        <option value="slot-6">14:00-15:00</option>
-                        <option value="slot-7">15:00-16:00</option>
-                        <option value="slot-8">16:00-17:00</option>
-                    </select>
+                    <label htmlFor='slot' style={{ color: "cadetblue", marginRight: "20px", width:"100%" }}>Select a slot</label>
+                    <div className='slot-wrapper'>
+                        {slotItems.length > 0 ? slotItems : 'No slots left fot this day'}
+                    </div>
                 </div>
                 <div className="form-group">
                     <textarea

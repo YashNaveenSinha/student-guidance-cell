@@ -543,7 +543,28 @@ h5 {
     "profile-buttons"
     ;
 }
-
+.slot-wrapper{
+    height: 125px;
+    overflow-y: auto;
+    word-break: break-all;
+    line-height: 2.5;
+    border: 1px solid #fff;
+    border-radius: 2px;
+    padding: 5px;
+}
+.slot-wrapper span{
+    background: white;
+    padding: 5px 10px;
+    border-radius: 16px;
+    cursor: pointer;
+    display: inline;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+.slot-wrapper span.selected{
+    background-color: green;
+    color:#fff;
+}
 .carousel-item {
     text-align: center;
     padding: 5% 15%;
