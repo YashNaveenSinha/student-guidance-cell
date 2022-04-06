@@ -1,7 +1,7 @@
-import React, {Fragment, useState } from 'react';
+import React, { Fragment, useState } from 'react';
 import PropTypes from 'prop-types';
-import {connect} from 'react-redux';
-import {addReview} from '../../actions/review';
+import { connect } from 'react-redux';
+import { addReview } from '../../actions/review';
 
 const ReviewForm = ({ doctorId, addReview }) => {
     const [text, setText] = useState('');
@@ -13,11 +13,11 @@ const ReviewForm = ({ doctorId, addReview }) => {
                     e.preventDefault();
                     addReview(doctorId, { text });
                     setText('');
-                    }}>
-                    <textarea 
-                        className="text-area" 
-                        name="text" cols="30" rows="5" 
-                        placeholder="Write a review" 
+                }}>
+                    <textarea
+                        className="text-area"
+                        name="text" cols="30" rows="5"
+                        placeholder="Share your logs with doctors and they will get back to you."
                         required
                         value={text}
                         onChange={e => setText(e.target.value)}
@@ -34,4 +34,4 @@ ReviewForm.propTypes = {
     addReview: PropTypes.func.isRequired
 };
 
-export default connect(null, {addReview})(ReviewForm);
+export default connect(null, { addReview })(ReviewForm);

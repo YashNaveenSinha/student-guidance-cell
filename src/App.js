@@ -26,6 +26,7 @@ import store from './store';
 import { loadUser } from './actions/authUser';
 import { loadDoctor } from './actions/authDoctor';
 import setAuthToken from './utils/setAuthToken';
+import UserDashboard from './components/dashboard/UserDashboard';
 
 
 if (localStorage.token) {

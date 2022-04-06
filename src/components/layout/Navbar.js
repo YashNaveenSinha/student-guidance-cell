@@ -26,7 +26,7 @@ const Navbar = (
             <div className="collapse navbar-collapse" id="navbarNav">
                 <ul className="navbar-nav ml-auto">
                     <li className="nav-item active">
-                        <Link to="/profiles" className="nav-link">Doctors</Link>
+                        <Link to="/profiles" className="nav-link">Counsellors</Link>
                     </li>
                     <li className="nav-item active">
                         <Link to="/appointment" className="nav-link ">Appointments
@@ -91,7 +91,7 @@ const Navbar = (
             <div className="collapse navbar-collapse" id="navbarNav">
                 <ul className="navbar-nav ml-auto">
                     <li className="nav-item active">
-                        <Link to="/profiles" className="nav-link">Doctors</Link>
+                        <Link to="/profiles" className="nav-link">Counsellors</Link>
                     </li>
                     <li className="nav-item dropdown active">
                         <Link className="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -99,7 +99,7 @@ const Navbar = (
                         </Link>
                         <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             <Link className="dropdown-item" to="/loginUser"><i className="fas fa-users"></i> Login as User</Link>
-                            <Link className="dropdown-item" to="/loginDoctor"><i className="fas fa-user-md"></i> Login as Doctor</Link>
+                            <Link className="dropdown-item" to="/loginDoctor"><i className="fas fa-user-md"></i> Login as Counsellor</Link>
                         </div>
                     </li>
                     <li className="nav-item dropdown active">
@@ -108,7 +108,7 @@ const Navbar = (
                         </Link>
                         <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             <Link className="dropdown-item" to="/registerUser"><i className="fas fa-users"></i> Register as User</Link>
-                            <Link className="dropdown-item" to="/registerDoctor"><i className="fas fa-user-md"></i> Register as Doctor</Link>
+                            <Link className="dropdown-item" to="/registerDoctor"><i className="fas fa-user-md"></i> Register as Counsellor</Link>
                         </div>
                     </li>
                 </ul>

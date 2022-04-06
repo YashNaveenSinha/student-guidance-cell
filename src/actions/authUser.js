@@ -14,7 +14,7 @@ import setAuthToken from '../utils/setAuthToken';
 
 // Load User
 export const loadUser = () => async dispatch => {
-    if(localStorage.token) {
+    if (localStorage.token) {
         setAuthToken(localStorage.token);
     }
 
@@ -50,7 +50,7 @@ export const register = ({ name, email, password }) => async dispatch => {
         dispatch(loadUser());
     } catch (err) {
         const errors = err.response.data.errors;
-        if(errors) {
+        if (errors) {
             errors.forEach(error => dispatch(setAlert(error.msg, 'danger')));
         }
 
@@ -78,11 +78,11 @@ export const login = (email, password) => async (dispatch) => {
         dispatch(loadUser());
     } catch (err) {
         const errors = err.response.data.errors;
-        if(errors) {
+        if (errors) {
             errors.forEach(error => dispatch(setAlert(error.msg, 'danger')));
         }
 
-        dispatch({ 
+        dispatch({
             type: LOGIN_USER_FAIL
         });
     }

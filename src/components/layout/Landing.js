@@ -24,7 +24,7 @@ const Landing = ({ isDoctorAuthenticated, isUserAuthenticated }) => {
                         <div className="doctor-signup">
                             <h2 className=" item heading-sub"><strong>Sign Up</strong></h2>
                             {/* <p className="item description">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vel itaque quae delectus veritatis consequatur hic!</p> */}
-                            <Link to="/registerDoctor" type="button" className="item btn btn-info">For Doctors</Link>
+                            <Link to="/registerDoctor" type="button" className="item btn btn-info">For Counsellors</Link>
                         </div>
                         <div className="user-signup">
                             <h2 className="item heading-sub"><strong></strong></h2>

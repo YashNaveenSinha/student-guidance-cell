@@ -1,11 +1,25 @@
-import React, { Fragment,useState } from 'react';
+import React, { Fragment, useState } from 'react';
 import PropTypes from 'prop-types';
 import Moment from 'react-moment';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 
-const Patient = ({patient}) => {
+const Patient = ({ patient }) => {
 
-    const [value,setValue] = useState([]);
+    const [value, setValue] = useState([]);
+    const [prescription, setPrescription] = useState(false);
+
+    const slotsArray = {
+        '8_9': '8:00-9:00',
+        '9_10': '9:00-10:00',
+        '10_11': '10:00-11:00',
+        '11_12': '11:00-12:00',
+        '12_1': '12:00-1:00',
+        '1_2': '1:00-2:00',
+        '2_3': '2:00-3:00',
+        '3_4': '3:00-4:00',
+        '4_5': '4:00-5:00',
+        '5_6': '5:00-6:00',
+    }
 
     const modalBody = patient.map(pat => (
         <Fragment key={pat._id}>
@@ -14,6 +28,7 @@ const Patient = ({patient}) => {
             <p className="profile-p2"><strong>Age: </strong>{pat.age}</p>
             <p className="profile-p2"><strong>Status: </strong>{pat.status}</p>
             <p className="profile-p2"><strong>Date: </strong><Moment format='DD/MM/YYYY'>{pat.date}</Moment></p>
+            <p className="profile-p2"><strong>Slot: </strong>{slotsArray[pat.slot]}</p>
             <p className="profile-p2"><strong>Booking ID: </strong>{pat.bookingId}</p>
         </Fragment>
     ));
@@ -25,13 +40,13 @@ const Patient = ({patient}) => {
                 <Moment format='DD/MM/YYYY'>{ptn.date}</Moment>
             </td>
             <td>
-            <button 
-                onClick={() => setValue(ptn._id)}
-                type="button" 
-                className="btn btn-info"
-                data-toggle="modal" data-target="#exampleModal">
-                View
-            </button>
+                <button
+                    onClick={() => setValue(ptn._id)}
+                    type="button"
+                    className="btn btn-info"
+                    data-toggle="modal" data-target="#exampleModal">
+                    View
+                </button>
                 <div className="modal fade " id="exampleModal" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div className="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                         <div className="modal-content">
@@ -47,15 +62,16 @@ const Patient = ({patient}) => {
                                         <div className="profile-details">
                                             <div className="appointment-p prfile-desc">
                                                 {
-                                                    modalBody.map(modal => value === modal.key ? 
+                                                    modalBody.map(modal => value === modal.key ?
                                                         modal.props.children : "")
                                                 }
                                             </div>
                                         </div>
                                         <div className="desc-p profile-buttons">
-                                            <p className="profile-p2"><strong>Description: </strong>{ptn.description}</p>                                        
+                                            <p className="profile-p2"><strong>Description: </strong>{ptn.description}</p>
                                         </div>
                                     </div>
+                                    <button type='button' className='btn btn-danger'>Create Prescription</button>
                                 </div>
                             </div>
                             <div className="modal-footer">
@@ -72,24 +88,24 @@ const Patient = ({patient}) => {
         <Fragment>
             <div className="common-details">
                 <h2 className="credentials"><strong>Patient Credentials</strong></h2>
-                    <br />
-                    <div className="common-table">
-                        <div className="scroll-table">
-                            <table className="table">
-                                <thead>
-                                    <tr>
-                                        <th>Booking ID</th>
-                                        <th>Patient's Name</th>
-                                        <th>Date</th>
-                                        <th></th>
-                                    </tr>
-                                </thead>
+                <br />
+                <div className="common-table">
+                    <div className="scroll-table">
+                        <table className="table">
+                            <thead>
+                                <tr>
+                                    <th>Booking ID</th>
+                                    <th>Patient's Name</th>
+                                    <th>Date</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
                             <tbody>
                                 {patients}
                             </tbody>
-                            </table>
-                        </div>
+                        </table>
                     </div>
+                </div>
             </div>
             <br />
         </Fragment>
